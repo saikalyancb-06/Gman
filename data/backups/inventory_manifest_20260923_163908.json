@@ -1,0 +1,1437 @@
+{
+  "timestamp": "20260923_163908",
+  "backup_db_path": "C:\\Users\\Saikalyan-Kredo\\Desktop\\geoguide\\data\\backups\\geoguide_pre_reset_20260923_163908.db",
+  "backup_sql_path": "C:\\Users\\Saikalyan-Kredo\\Desktop\\geoguide\\data\\backups\\geoguide_pre_reset_20260923_163908.sql",
+  "source_sqlite": "C:\\Users\\Saikalyan-Kredo\\Desktop\\geoguide\\backend\\geoguide.db",
+  "tables": {
+    "activities_poi": {
+      "row_count": 21,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "category_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "tag_badge",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "short_desc",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "full_desc",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "lat",
+          "type": "REAL",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "lng",
+          "type": "REAL",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "distance_km",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 10,
+          "name": "travel_time_mins",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 11,
+          "name": "travel_mode",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 12,
+          "name": "est_duration_mins",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 13,
+          "name": "entry_fee_inr",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 14,
+          "name": "entry_fee_foreign_inr",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 15,
+          "name": "is_step_free",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 16,
+          "name": "terrain_type",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 17,
+          "name": "best_time_window",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 18,
+          "name": "open_time",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 19,
+          "name": "close_time",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 20,
+          "name": "ticket_policy",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 21,
+          "name": "rating",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 22,
+          "name": "review_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 23,
+          "name": "carbon_kg",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 24,
+          "name": "image_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 25,
+          "name": "audio_intro_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "bookmarks": {
+      "row_count": 0,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "user_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "poi_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "categories": {
+      "row_count": 5,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "slug",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "icon",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "cities": {
+      "row_count": 3,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "country_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "state",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "lat",
+          "type": "REAL",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "lng",
+          "type": "REAL",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "timezone",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "best_season",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "peak_months",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "countries": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "code",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "currency_code",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "default_locale",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        }
+      ]
+    },
+    "currencies": {
+      "row_count": 4,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "code",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "symbol",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "exchange_rate_to_inr",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "events_festivals": {
+      "row_count": 5,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "date_start",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "date_end",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "location_desc",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "impact_level",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "hotels": {
+      "row_count": 4,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "category",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "price_per_night",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "rating",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "distance_desc",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "lat",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "lng",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "image_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 10,
+          "name": "access_note",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "itineraries": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "trip_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "user_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "title",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "date",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "duration_type",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "optimization_filter",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "total_duration_mins",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "total_cost_inr",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "total_walking_km",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 10,
+          "name": "total_carbon_kg",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 11,
+          "name": "note",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "itinerary_items": {
+      "row_count": 4,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "itinerary_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "poi_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "stop_order",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "start_time",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "end_time",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "duration_mins",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "travel_mode",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "travel_duration_mins",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "cost_inr",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 10,
+          "name": "carbon_kg",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 11,
+          "name": "special_note",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 12,
+          "name": "is_locked",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "languages": {
+      "row_count": 3,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "code",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "local_name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "is_tts_supported",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "is_default",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "optimizer_weights": {
+      "row_count": 4,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "filter_name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "weight_time",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "weight_cost",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "weight_walking",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "weight_carbon",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "weight_value",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "max_walking_distance_m",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "place_kb": {
+      "row_count": 9,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "topic",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "title",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "content",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "source_citation",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "verified_status",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "poi_facts_kb": {
+      "row_count": 2,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "poi_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "fact_title",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "fact_detail",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "source_name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "verified",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "tag",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "poi_feedback": {
+      "row_count": 0,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "user_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "poi_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "feedback_type",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "safety_advisories": {
+      "row_count": 6,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "title",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "description",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "severity",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "advisory_type",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "is_active",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "valid_until",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "detour_advice",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "trips": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "user_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "title",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "start_date",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "end_date",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "budget_spent_inr",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "sites_seen_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "saved_count",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "user_devices": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "user_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "device_token",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "platform",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "location_permission",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "last_lat",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "last_lng",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "last_active",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "user_preferences": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "user_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "interests_json",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "budget_tier",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "pace",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "step_free_only",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "max_walking_km",
+          "type": "REAL",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "avoid_midday_sun",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "language",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "voice_output",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 10,
+          "name": "updated_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "users": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "name",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "email",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "avatar_url",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "created_at",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    },
+    "weather_daily": {
+      "row_count": 1,
+      "columns": [
+        {
+          "col_id": 0,
+          "name": "id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 1
+        },
+        {
+          "col_id": 1,
+          "name": "city_id",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 2,
+          "name": "date",
+          "type": "TEXT",
+          "notnull": 1,
+          "pk": 0
+        },
+        {
+          "col_id": 3,
+          "name": "temp_c",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 4,
+          "name": "feels_like_c",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 5,
+          "name": "condition",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 6,
+          "name": "humidity_pct",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 7,
+          "name": "sunrise",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 8,
+          "name": "sunset",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 9,
+          "name": "daylight_hours",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 10,
+          "name": "uv_index",
+          "type": "INTEGER",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 11,
+          "name": "uv_alert_until",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 12,
+          "name": "season_summary",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        },
+        {
+          "col_id": 13,
+          "name": "advice_text",
+          "type": "TEXT",
+          "notnull": 0,
+          "pk": 0
+        }
+      ]
+    }
+  },
+  "total_rows": 77
+}
