@@ -432,7 +432,7 @@ def get_place_evidence(poi_id: int):
             {
                 "claim": f"{f['fact_title']}: {f['fact_detail']}",
                 "source": f["source_name"],
-                "verified": bool(f["verified"])
+                "verified": bool(f.get("verified", True))
             } for f in facts
         ]
     }

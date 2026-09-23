@@ -247,6 +247,14 @@ export default function NowScreen({ data, onSelectPlace, onTabChange, onAskQuest
                       💡 Detour advice: {item.detour_advice}
                     </p>
                   )}
+                  {item.title && (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onAskQuestion(`Tell me more about: ${item.title}`); }}
+                      className="text-[10px] text-[#F8D348] hover:underline mt-1 font-medium"
+                    >
+                      Ask GeoGuide →
+                    </button>
+                  )}
                 </div>
               </div>
             );
@@ -298,6 +306,20 @@ export default function NowScreen({ data, onSelectPlace, onTabChange, onAskQuest
                   <span className="text-[#30D158] font-medium">
                     {poi.entry_fee_inr === 0 ? 'Free' : `₹${poi.entry_fee_inr}`}
                   </span>
+                </div>
+                <div className="flex space-x-1.5 pt-1">
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onAskQuestion(`Is ${poi.name} open now?`); }}
+                    className="flex-1 py-1 text-[9px] font-semibold rounded-lg bg-[#2C2C2E] text-[#30D158] hover:bg-[#3A3A3C] transition-colors"
+                  >
+                    🕐 Open now?
+                  </button>
+                  <button
+                    onClick={(e) => { e.stopPropagation(); onAskQuestion(`What is the entry fee for ${poi.name}?`); }}
+                    className="flex-1 py-1 text-[9px] font-semibold rounded-lg bg-[#2C2C2E] text-[#F8D348] hover:bg-[#3A3A3C] transition-colors"
+                  >
+                    🎟 Entry fee?
+                  </button>
                 </div>
               </div>
             </div>

@@ -7,9 +7,29 @@ from backend.rag_service import GroundedRAGService, QueryContext, RelevanceGate
 
 @pytest.fixture(autouse=True)
 def setup_empty_corpus():
-    """Ensures each test starts with an explicitly clean and empty PostgreSQL knowledge corpus."""
+    """Ensures each test starts with an explicitly clean and empty PostgreSQL knowledge corpus and reseeds after."""
     reset_knowledge_corpus()
     yield
+    # Reseed baseline entities from activities_poi and local businesses after clean rebuild tests run
+    try:
+        conn = get_pg_connection()
+        with conn.cursor() as cur:
+            cur.execute("SELECT id, name, city_id, short_desc, lat, lng FROM activities_poi")
+            pois = cur.fetchall()
+            for p in pois:
+                cur.execute(
+                    "INSERT INTO entities (name, entity_type, city_id, latitude, longitude, category, address) "
+                    "VALUES (%s, %s, %s, %s, %s, %s, %s) ON CONFLICT DO NOTHING;",
+                    (p[1], 'POI', p[2], p[4], p[5], 'Heritage / Monument', p[3])
+                )
+            cur.execute(
+                "INSERT INTO entities (name, entity_type, city_id, latitude, longitude, category, address) "
+                "VALUES ('SLV Hotel', 'POI', 2, 12.9430, 77.5730, 'Food / Restaurant', 'Gandhi Bazaar, Basavanagudi') "
+                "ON CONFLICT DO NOTHING;"
+            )
+        conn.close()
+    except Exception:
+        pass
 
 def test_1_empty_corpus_state():
     """Verify that after reset, all factual RAG tables are empty."""

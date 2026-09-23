@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Search, MapPin, Clock, Footprints, Filter, 
   Utensils, Hotel, Sparkles, Navigation, Heart, ChevronRight, AlertCircle, Plus 
@@ -158,6 +158,20 @@ export default function NearbyScreen({ cityId = 2, userLocation, onSelectPlace, 
                     <span>{poi.travel_time_mins} min {poi.travel_mode || 'auto'}</span>
                     <span>•</span>
                     <span className="text-white font-medium">{poi.entry_fee_inr === 0 ? 'Free' : ('₹' + poi.entry_fee_inr)}</span>
+                  </div>
+                  <div className="flex space-x-1.5 pt-1.5">
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onAskQuestion(`Is ${poi.name} open now?`); }}
+                      className="px-2 py-1 text-[9px] font-semibold rounded-lg bg-[#2C2C2E] text-[#30D158] hover:bg-[#3A3A3C] transition-colors"
+                    >
+                      🕐 Open?
+                    </button>
+                    <button
+                      onClick={(e) => { e.stopPropagation(); onAskQuestion(`Tell me about ${poi.name}`); }}
+                      className="flex-1 py-1 text-[9px] font-semibold rounded-lg bg-[#2C2C2E] text-[#F8D348] hover:bg-[#3A3A3C] transition-colors text-center"
+                    >
+                      Ask GeoGuide →
+                    </button>
                   </div>
                 </div>
               </div>

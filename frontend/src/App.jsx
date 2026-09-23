@@ -8,15 +8,25 @@ import AskScreen from './components/AskScreen';
 import ProfileScreen from './components/ProfileScreen';
 import PlaceDetailModal from './components/PlaceDetailModal';
 
+import { useLocationContext } from './context/LocationContext';
+
 export default function App() {
+  const { 
+    userGeo, 
+    userCoords, 
+    destination, 
+    destinationId, 
+    destinationName, 
+    availableCities, 
+    selectDestination, 
+    requestUserLocation 
+  } = useLocationContext();
+
   const [currentTab, setCurrentTab] = useState('now');
   const [selectedPlace, setSelectedPlace] = useState(null);
   const [nowData, setNowData] = useState(null);
   const [language, setLanguage] = useState('en');
   const [askInitialQuery, setAskInitialQuery] = useState('');
-  const [userLocation, setUserLocation] = useState(null);
-  const [selectedCityId, setSelectedCityId] = useState(1); // Default Hampi (PDF primary demo)
-  const [availableCities, setAvailableCities] = useState([]);
   const [showCityPicker, setShowCityPicker] = useState(false);
   const [isOffline, setIsOffline] = useState(!navigator.onLine);
 
@@ -27,44 +37,18 @@ export default function App() {
     window.addEventListener('online', handleOnline);
     window.addEventListener('offline', handleOffline);
 
-    // 1. Fetch available cities
-    apiService.getCities().then(res => {
-      if (res && res.cities) setAvailableCities(res.cities);
-    }).catch(console.error);
-
-    // 2. Automatically request and lock to exact device GPS if permission is granted
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const coords = { 
-            lat: pos.coords.latitude, 
-            lng: pos.coords.longitude,
-            accuracy: pos.coords.accuracy 
-          };
-          setUserLocation(coords);
-          loadNowContext(null, coords);
-        },
-        () => {
-          // If not permitted or slow, fallback to default destination
-          loadNowContext(1, null);
-        },
-        { enableHighAccuracy: true, timeout: 6000 }
-      );
-    } else {
-      loadNowContext(1, null);
-    }
+    loadNowContext(destinationId, userCoords);
 
     return () => {
       window.removeEventListener('online', handleOnline);
       window.removeEventListener('offline', handleOffline);
     };
-  }, [language]);
+  }, [language, destinationId, userCoords]);
 
   const loadNowContext = async (cityId = 1, coords = null) => {
     try {
       const res = await apiService.getNowContext(cityId, 1, language, coords);
       setNowData(res);
-      if (res && res.city_id) setSelectedCityId(res.city_id);
       // Cache in localStorage for offline resiliency
       localStorage.setItem('geoguide_cached_now', JSON.stringify(res));
     } catch (err) {
@@ -75,26 +59,17 @@ export default function App() {
   };
 
   const handleCitySelect = (cityId) => {
-    setSelectedCityId(cityId);
+    selectDestination(cityId);
     setShowCityPicker(false);
-    loadNowContext(cityId, null);
   };
 
-  const handleUseLiveGPS = () => {
+  const handleUseLiveGPS = async () => {
     setShowCityPicker(false);
-    if (navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(
-        (pos) => {
-          const coords = { lat: pos.coords.latitude, lng: pos.coords.longitude };
-          setUserLocation(coords);
-          loadNowContext(null, coords);
-        },
-        (err) => {
-          console.log('GPS unavailable, using Hampi reference:', err);
-          loadNowContext(1, null);
-        },
-        { enableHighAccuracy: true, timeout: 8000 }
-      );
+    try {
+      const coords = await requestUserLocation();
+      loadNowContext(destinationId, { lat: coords.latitude, lng: coords.longitude });
+    } catch (err) {
+      console.log('GPS request completed with status:', err);
     }
   };
 
@@ -163,10 +138,10 @@ export default function App() {
               <button
                 key={c.id}
                 onClick={() => handleCitySelect(c.id)}
-                className={'w-full text-left px-3 py-2 rounded-xl hover:bg-[#2C2C2E] flex items-center justify-between ' + (selectedCityId === c.id ? 'bg-[#242116] text-[#F8D348] font-bold' : 'text-neutral-300')}
+                className={'w-full text-left px-3 py-2 rounded-xl hover:bg-[#2C2C2E] flex items-center justify-between ' + (destinationId === c.id ? 'bg-[#242116] text-[#F8D348] font-bold' : 'text-neutral-300')}
               >
                 <span>{c.name} ({c.state})</span>
-                {selectedCityId === c.id && <span className="text-xs">✔</span>}
+                {destinationId === c.id && <span className="text-xs">✔</span>}
               </button>
             ))}
           </div>
@@ -185,8 +160,8 @@ export default function App() {
 
           {currentTab === 'nearby' && (
             <NearbyScreen 
-              cityId={selectedCityId || 1}
-              userLocation={userLocation}
+              cityId={destinationId || 1}
+              userLocation={userCoords}
               onSelectPlace={(p) => setSelectedPlace(p)}
               onAskQuestion={handleAskQuestion}
             />
@@ -194,8 +169,8 @@ export default function App() {
 
           {currentTab === 'plan' && (
             <PlanScreen 
-              cityId={selectedCityId || 1}
-              userLocation={userLocation}
+              cityId={destinationId || 1}
+              userLocation={userCoords}
               onSelectPlace={(p) => setSelectedPlace(p)}
               onAskQuestion={handleAskQuestion}
             />
@@ -203,12 +178,12 @@ export default function App() {
 
           {currentTab === 'ask' && (
             <AskScreen 
-              cityId={selectedCityId || 1}
-              cityName={nowData?.location?.city || 'Hampi'}
+              cityId={destinationId || 1}
+              cityName={destinationName || nowData?.location?.city || 'Hampi'}
               initialQuery={askInitialQuery}
               language={language}
-              userLocation={userLocation}
-              onLocationUpdate={(coords) => setUserLocation(coords)}
+              userLocation={userCoords}
+              onLocationUpdate={requestUserLocation}
               onLanguageChange={(l) => setLanguage(l)}
               onSelectPlace={(p) => setSelectedPlace(p)}
             />

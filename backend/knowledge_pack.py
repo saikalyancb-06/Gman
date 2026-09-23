@@ -42,61 +42,21 @@ class GeoContextResolver:
         if query:
             q_low = query.lower()
             
-            # 1. Check explicit POI / landmark mentions (highest precedence)
-            poi_aliases = {
-                "lalbagh": 2, # Bengaluru
-                "glass house": 2,
-                "cubbon": 2,
-                "bengaluru palace": 2,
-                "bangalore palace": 2,
-                "tipu sultan": 2,
-                "ngma": 2,
-                "vidyarthi bhavan": 2,
-                "brahmin coffee": 2,
-                "vittala": 1, # Hampi
-                "stone chariot": 1,
-                "musical pillar": 1,
-                "virupaksha": 1,
-                "inverted shadow": 1,
-                "inverted gopura": 1,
-                "lotus mahal": 1,
-                "elephant stables": 1,
-                "matanga": 1,
-                "hemakuta": 1,
-                "underground shiva": 1,
-                "sasivekalu": 1,
-                "anegundi": 1,
-                "tungabhadra": 1,
-                "coracle": 1,
-                "mysore palace": 3, # Mysuru
-                "amba vilas": 3,
-                "chamundi": 3,
-                "guru sweets": 3,
-                # Neighborhoods & Local Areas
-                "gandhi bazaar": 2, # Bengaluru
-                "gandhi bazar": 2,
-                "basavanagudi": 2,
-                "malleswaram": 2,
-                "malleshwaram": 2,
-                "koramangala": 2,
-                "indiranagar": 2,
-                "jayanagar": 2,
-                "commercial street": 2,
-                "brigade road": 2,
-                "mg road": 2
-            }
-
-            for alias, target_c_id in poi_aliases.items():
-                if alias in q_low:
-                    resolved_city = next((c for c in cities if c["id"] == target_c_id), None)
-                    detected_from = "explicit_poi_query"
-                    confidence = 0.99
-                    # Match exact POI if available
-                    for p in all_pois:
-                        if p["city_id"] == target_c_id and (alias in p["name"].lower() or p["name"].lower() in alias):
-                            resolved_poi = p
-                            break
-                    break
+            # 1. Dynamic database candidate matching for POIs and Places
+            try:
+                from backend.entity_resolver import EntityResolver
+                db_cands = EntityResolver.get_database_candidates(query, limit=15)
+                if db_cands:
+                    top_c, conf, _ = EntityResolver.resolve_candidate(query, db_cands)
+                    if top_c and conf >= 0.35 and top_c.get("city_id"):
+                        target_c_id = top_c["city_id"]
+                        resolved_city = next((c for c in cities if c["id"] == target_c_id), None)
+                        if resolved_city:
+                            detected_from = "explicit_poi_query"
+                            confidence = max(0.90, conf)
+                            resolved_poi = top_c
+            except Exception as e:
+                pass
 
             # 2. Check explicit city mention in query
             if not resolved_city:

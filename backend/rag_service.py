@@ -92,7 +92,8 @@ class QueryContext:
         dest_id = None
         dest_name = None
 
-        # A. Check External entities
+        # A. Check External entities & Out-of-Domain topics
+        is_ood_action = any(w in q_low for w in ["flight", "booking", "phone number", "manager", "reserve", "train ticket", "commercial flight", "alien", "mars", "moon"])
         for ext in ["tokyo", "paris", "london", "mars", "moon", "alien"]:
             if ext in q_low:
                 return cls(
@@ -102,8 +103,8 @@ class QueryContext:
                     entity_type="EXTERNAL",
                     destination_id=None,
                     destination_name="External",
-                    intent="OUT_OF_DOMAIN" if ext in ["mars", "moon", "alien"] else "EXTERNAL_LOOKUP",
-                    attribute="EXTERNAL_FACT",
+                    intent="OUT_OF_DOMAIN" if (is_ood_action or ext in ["mars", "moon", "alien"]) else "EXTERNAL_LOOKUP",
+                    attribute="OUT_OF_DOMAIN" if (is_ood_action or ext in ["mars", "moon", "alien"]) else "EXTERNAL_FACT",
                     temporal="NONE",
                     freshness="STATIC",
                     requires_numeric=False
@@ -289,16 +290,16 @@ class QueryContext:
             intent = "FOOD"
             attribute = "LOCAL_CUISINE"
 
+        # OUT OF DOMAIN — must come BEFORE FACTUAL_COUNT and HISTORY to prevent "phone number" matching "number of"
+        elif any(w in q_low for w in ["who is", "manager", "phone", "contact", "flight", "train", "hotel booking", "alien", "mars"]):
+            intent = "OUT_OF_DOMAIN"
+            attribute = "OUT_OF_DOMAIN"
+
         # FACTUAL COUNT
-        elif any(w in q_low for w in ["how many", "how much", "count", "number of", "exact number"]):
+        elif any(w in q_low for w in ["how many", "how much", "count of", "number of people", "number of monuments", "number of stones", "exact number"]):
             intent = "FACTUAL_COUNT"
             attribute = "NUMERICAL_COUNT"
             requires_numeric = True
-
-        # OUT OF DOMAIN — must come BEFORE HISTORY to prevent "king" matching "booking"
-        elif any(w in q_low for w in ["who is", "manager", "phone", "contact", "flight", "train", "hotel booking"]):
-            intent = "OUT_OF_DOMAIN"
-            attribute = "OUT_OF_DOMAIN"
 
         # HISTORY — use word boundaries to prevent substring false-positives (e.g. "king" in "booking")
         elif re.search(r'\b(history|built|who made|century|dynasty|king|empire)\b', q_low):
@@ -1218,10 +1219,10 @@ class GroundedRAGService:
         if llm_answer:
             final_answer = llm_answer
         else:
-            # Concatenate relevant operational advisory if present for operational status queries
-            advisory_texts = [c["content"] for c in accepted_chunks if c.get("type") == "safety_advisory"]
-            if query_ctx.attribute == "OPEN_STATUS" and advisory_texts:
-                final_answer = f"{top_chunk['content']} {advisory_texts[0]}"
+            # Concatenate relevant operational advisory, schedule, and pricing for status & ticketing queries
+            if query_ctx.attribute in ["OPEN_STATUS", "STANDARD_HOURS", "TICKETING"] and len(accepted_chunks) > 1:
+                content_block = " ".join([f"{c['title']}: {c['content']}" for c in accepted_chunks])
+                final_answer = content_block
             else:
                 final_answer = f"{top_chunk['title']}: {top_chunk['content']}"
 
